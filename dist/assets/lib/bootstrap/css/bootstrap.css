@@ -4088,6 +4088,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     list-style: none outside none;
+    margin-bottom: 15px;
     margin-left: 15px;
     margin-right: 15px;
     padding: 10px 15px;
@@ -6538,7 +6539,7 @@ body
 
 .owl-slider .item a {
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .carousel-movies
@@ -6553,4 +6554,9 @@ body
 
 #owl-example .owl-wrapper {
     margin-bottom: 1em;
+}
+
+h3.ng-binding
+{
+  font-weight: 500;
 }
