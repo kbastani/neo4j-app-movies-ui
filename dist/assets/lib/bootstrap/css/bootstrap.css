@@ -280,13 +280,13 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #42BDC2;
-  text-decoration: none;
+  color: #444444;
+    font-weight: 500 !important;
+    text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+  color: #444444;
 }
 a:focus {
   outline: thin dotted;
@@ -6107,6 +6107,17 @@ padding: 8px 12px;
   border-radius: 3px;
   text-align: center;
 }
+
+#owl-example .owl-item .item {
+    height: 250px;
+    padding-top: 11em;
+    text-shadow: 0.1em 0.1em #000000;
+}
+
+#owl-example .owl-item .item h4, #owl-example .owl-item .item h3 {
+    font-weight: 500;
+}
+
 #owl-example .item img{
   width: auto;
   margin: 0 auto;
