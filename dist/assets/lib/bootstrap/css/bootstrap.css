@@ -6526,3 +6526,9 @@ body
 .owl-slider .item a {
   font-weight: 600;
 }
+
+.carousel-movies
+{
+  max-height: 180px;
+  overflow: hidden
+}

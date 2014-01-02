@@ -51,7 +51,7 @@ contentApp.directive('carousel', function() {
 	            	if ($.inArray(genre, movies[i].genres) != -1) {
 	            	var movieTitleLink = movies[i].title.replace('/', ' ')
 	                 html += '<div class="item">' +
-						          '<div class="thumbnail">' +
+						          '<div class="thumbnail carousel-movies">' +
 						            '<a href="index.html#/movies/' + movies[i].title.replace('/', '%252F') + '"><img alt="100%x180" src="assets/img/posters/' + movieTitleLink + '.jpg"></a>' +
 						          '</div>' +
 						          '<span><a href="index.html#/movies/' + movies[i].title.replace('/', '%252F') + '">' + movies[i].title + '</a></span>' +
