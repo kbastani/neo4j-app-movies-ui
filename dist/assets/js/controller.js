@@ -65,7 +65,7 @@ contentApp.directive('carousel', function() {
 	            $(element).owlCarousel({
 						items : 8,
 						itemsDesktop : [1199,6],
-						itemsDesktopSmall : [980,4],
+						itemsDesktopSmall : [980,5],
 						itemsTablet: [768,3],
 						itemsMobile: [479, 2]
 					});
