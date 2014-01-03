@@ -66,7 +66,7 @@ contentApp.directive('carousel', function() {
 						items : 8,
 						itemsDesktop : [1199,6],
 						itemsDesktopSmall : [980,5],
-						itemsTablet: [768,3],
+						itemsTablet: [768,4],
 						itemsMobile: [479, 2]
 					});
 
