@@ -133,7 +133,7 @@ contentApp.directive('carouselactors', function() {
 					items : 7,
 					itemsDesktop : [1199,6],
 					itemsDesktopSmall : [980,5],
-					itemsTablet: [768,4],
+					itemsTablet: [768,5],
 					itemsMobile: [479, 3]
 				});
 				Holder.run();
