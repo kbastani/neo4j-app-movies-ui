@@ -119,7 +119,7 @@ contentApp.directive('carouselactors', function() {
 	            	var actorTitleLink = movie.actors[i].replace('/', ' ')
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail">' +
-						            '<a href="index.html#/actors/' + movie.actors[i] + '"><img src="/assets/js/holder.js/100x148"/></a>' +
+						            '<a href="index.html#/actors/' + movie.actors[i] + '"><img src="/assets/img/actors/' + movie.actors[i] + '.jpg"/></a>' +
 						          '</div>' +
 						          '<span><a href="index.html#/actors/' + movie.actors[i] + '">' + movie.actors[i] + '</a></span>' +
 						        '</div>';
@@ -130,11 +130,11 @@ contentApp.directive('carouselactors', function() {
 
             	setTimeout(function() {
 	            $(element).owlCarousel({
-					items : 6,
+					items : 7,
 					itemsDesktop : [1199,6],
-					itemsDesktopSmall : [980,4],
-					itemsTablet: [768,3],
-					itemsMobile: [479, 2]
+					itemsDesktopSmall : [980,5],
+					itemsTablet: [768,4],
+					itemsMobile: [479, 3]
 				});
 				Holder.run();
 	           }, 0);
