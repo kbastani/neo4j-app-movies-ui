@@ -42,7 +42,7 @@
                   <div class="panel-heading">Genres: <span class="panel-heading genre-list"><span ng-repeat="genre in movie.genres">{{genre}}{{{true: '', false: ', '}[$last]}}</span></span></div>
                 </li>
                 <li class="list-group-item">
-                  <div class="panel-heading">Directed By: <span class="panel-heading"><a href="#">{{movie.director}}</a></span></div>
+                  <div class="panel-heading">Directed By: <span class="panel-heading genre-list"><span ng-repeat="director in movie.directors">{{director}}{{{true: '', false: ', '}[$last]}}</span></span></div>
                 </li>
                 <li class="list-group-item">
                   <div class="panel-heading">Written By: <span class="panel-heading"><a href="#">{{movie.writer}}</a></span></div>
@@ -82,7 +82,7 @@
                 </div>
                <div class="row">
                   <div class="item-label col-md-3">Keywords:</div>
-                  <div class="col-md-9"><span ng-repeat="genre in movie.genres">{{genre}}{{{true: '', false: ', '}[$last]}}</span></div>
+                  <div class="col-md-9"><span ng-repeat="keyword in movie.keywords">{{keyword}}{{{true: '', false: ', '}[$last]}}</span></div>
                 </div>
             </div>
           </div>
