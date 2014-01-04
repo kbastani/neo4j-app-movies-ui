@@ -18,6 +18,10 @@ contentApp.config(['$routeProvider',
         templateUrl: 'assets/partials/movie-detail.html',
         controller: 'MovieItemCtrl'
       }).
+      when('/people/:peopleId', {
+        templateUrl: 'assets/partials/people-detail.html',
+        controller: 'PeopleItemCtrl'
+      }).
       otherwise({
         redirectTo: '/movies'
       });

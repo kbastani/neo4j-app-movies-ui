@@ -6562,7 +6562,7 @@ h3.ng-binding
 }
 
 .actors .thumbnail {
-    max-height: 125px;
+    max-height: 150px;
     overflow: hidden;
 }
 
@@ -6579,4 +6579,9 @@ h3.ng-binding
 .content-title
 {
   margin-bottom: 1em;
+}
+
+.people-thumbnail
+{
+  max-height: 24em;
 }

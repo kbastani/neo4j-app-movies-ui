@@ -87,7 +87,7 @@ contentApp.directive('carousel', function() {
 
 contentApp.controller('MovieListCtrl', ['$scope', '$http', '$templateCache', 
 	function($scope, $http, $templateCache) {
-	  	$scope.url = 'http://movieapi-neo4j.herokuapp.com/api/v0/movies?api_key=special-key&neo4j=false';
+	  	$scope.url = 'http://localhost:3000/api/v0/movies?api_key=special-key&neo4j=false';
 	  	$scope.movies = [];
 
 	  	var fetchMovies = function()
@@ -119,9 +119,9 @@ contentApp.directive('carouselactors', function() {
 	            	var actorTitleLink = movie.actors[i].replace('/', ' ')
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail">' +
-						            '<a href="index.html#/actors/' + movie.actors[i] + '"><img src="/assets/img/actors/' + movie.actors[i] + '.jpg"/></a>' +
+						            '<a href="index.html#/people/' + movie.actors[i] + '"><img src="/assets/img/actors/' + movie.actors[i] + '.jpg"/></a>' +
 						          '</div>' +
-						          '<span><a href="index.html#/actors/' + movie.actors[i] + '">' + movie.actors[i] + '</a></span>' +
+						          '<span><a href="index.html#/people/' + movie.actors[i] + '">' + movie.actors[i] + '</a></span>' +
 						        '</div>';
 
 	            }
@@ -187,10 +187,11 @@ contentApp.directive('carouselrelatedmovies', function() {
 });
 
 
+
 contentApp.controller('MovieItemCtrl', ['$scope', '$routeParams', '$http', '$templateCache',
   function($scope, $routeParams, $http, $templateCache) {
-  		console.log('http://movieapi-neo4j.herokuapp.com/api/v0/movies/title/' + encodeURIComponent(decodeURI(decodeURI($routeParams.movieId))) + '?api_key=special-key&neo4j=false');
-  		$scope.url = 'http://movieapi-neo4j.herokuapp.com/api/v0/movies/title/' + encodeURIComponent(decodeURI(decodeURI($routeParams.movieId))) + '?api_key=special-key&neo4j=false';
+  		console.log('http://localhost:3000/api/v0/movies/title/' + encodeURIComponent(decodeURI(decodeURI($routeParams.movieId))) + '?api_key=special-key&neo4j=false');
+  		$scope.url = 'http://localhost:3000/api/v0/movies/title/' + encodeURIComponent(decodeURI(decodeURI($routeParams.movieId))) + '?api_key=special-key&neo4j=false';
 	  	var fetchMovie = function()
 	  	{
 	  		$http({method: 'GET', url: $scope.url, cache: $templateCache}).
@@ -205,5 +206,106 @@ contentApp.controller('MovieItemCtrl', ['$scope', '$routeParams', '$http', '$tem
 	  	}
 
 	  	fetchMovie();
+  }]);
+
+contentApp.directive('carouselpeoplemovies', function() {
+	var res = {
+     restrict : 'A',
+     link     : function (scope, element, attrs) {
+           scope.$watch(attrs.carouselpeoplemovies, function(people) {  
+           	console.log(scope.people);
+           	if(scope.people != undefined ? scope.people.movies != undefined ? scope.people.movies.length > 0 : false : false)
+           	{
+           		people = scope.people;
+           		var html = '';
+	            for (var i = 0; i < people.movies.length; i++) {
+	            	var relatedMovieTitleLink = people.movies[i].replace('/', ' ')
+	                 html += '<div class="item">' +
+						          '<div class="thumbnail">' +
+						            '<a href="index.html#/movies/' + people.movies[i].replace('/', '%252F')  + '"><img src="/assets/img/posters/' + relatedMovieTitleLink + '.jpg"/></a>' +
+						          '</div>' +
+						          '<span><a href="index.html#/movies/' + people.movies[i].replace('/', '%252F')  + '">' + people.movies[i] + '</a></span>' +
+						        '</div>';
+
+	            }
+
+            	element[0].innerHTML = html;
+
+            	setTimeout(function() {
+	            $(element).owlCarousel({
+					items : 7,
+					itemsDesktop : [1199,6],
+					itemsDesktopSmall : [980,5],
+					itemsTablet: [768,5],
+					itemsMobile: [479, 3]
+				});
+				Holder.run();
+	           }, 0);
+			}
+        	
+        });
+       }
+   };
+  return res;
+});
+
+contentApp.directive('carouselrelatedpeople', function() {
+	var res = {
+     restrict : 'A',
+     link     : function (scope, element, attrs) {
+           scope.$watch(attrs.carouselrelatedpeople, function(people) {  
+           	if(scope.people != undefined ? scope.people.related != undefined ? scope.people.related.length > 0 : false : false)
+           	{
+           		people = scope.people;
+           		var html = '';
+	            for (var i = 0; i < people.related.length; i++) {
+	            	var actorTitleLink = people.related[i].related.replace('/', ' ')
+	                 html += '<div class="item">' +
+						          '<div class="thumbnail">' +
+						            '<a href="index.html#/people/' + people.related[i].related + '"><img src="/assets/img/actors/' + people.related[i].related + '.jpg"/></a>' +
+						          '</div>' +
+						          '<span><a href="index.html#/people/' + people.related[i].related + '">' + people.related[i].related + '</a></span>' +
+						        '</div>';
+
+	            }
+            //src="assets/img/actors/' + actorTitleLink + '.jpg"
+            	element[0].innerHTML = html;
+
+            	setTimeout(function() {
+	            $(element).owlCarousel({
+					items : 8,
+					itemsDesktop : [1199,7],
+					itemsDesktopSmall : [980,5],
+					itemsTablet: [768,5],
+					itemsMobile: [479, 3]
+				});
+				Holder.run();
+	           }, 0);
+			}
+        	
+        });
+       }
+   };
+  return res;
+});
+
+contentApp.controller('PeopleItemCtrl', ['$scope', '$routeParams', '$http', '$templateCache',
+  function($scope, $routeParams, $http, $templateCache) {
+  		console.log('http://localhost:3000/api/v0/people/name/' + encodeURIComponent(decodeURI(decodeURI($routeParams.peopleId))) + '?api_key=special-key&neo4j=false');
+  		$scope.url = 'http://localhost:3000/api/v0/people/name/' + encodeURIComponent(decodeURI(decodeURI($routeParams.peopleId))) + '?api_key=special-key&neo4j=false';
+	  	var fetchPeople = function()
+	  	{
+	  		$http({method: 'GET', url: $scope.url, cache: $templateCache}).
+			    success(function(data, status, headers, config) {
+			    	$scope.people = data;
+			    	$scope.people.poster = $scope.people.name.replace("/", " ");
+			    }).
+			    error(function(data, status, headers, config) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			    });
+	  	}
+
+	  	fetchPeople();
   }]);
 			
