@@ -146,6 +146,46 @@ contentApp.directive('carouselactors', function() {
   return res;
 });
 
+contentApp.directive('carouselrelatedmovies', function() {
+	var res = {
+     restrict : 'A',
+     link     : function (scope, element, attrs) {
+           scope.$watch(attrs.carouselrelatedmovies, function(movie) {  
+           	if(scope.movie != undefined ? scope.movie.related != undefined ? scope.movie.related.length > 0 : false : false)
+           	{
+           		movie = scope.movie;
+           		var html = '';
+	            for (var i = 0; i < movie.related.length; i++) {
+	            	var relatedMovieTitleLink = movie.related[i].related.replace('/', ' ')
+	                 html += '<div class="item">' +
+						          '<div class="thumbnail">' +
+						            '<a href="index.html#/movies/' + movie.related[i].related.replace('/', '%252F')  + '"><img src="/assets/img/posters/' + relatedMovieTitleLink + '.jpg"/></a>' +
+						          '</div>' +
+						          '<span><a href="index.html#/movies/' + movie.related[i].related.replace('/', '%252F')  + '">' + movie.related[i].related + '</a></span>' +
+						        '</div>';
+
+	            }
+
+            	element[0].innerHTML = html;
+
+            	setTimeout(function() {
+	            $(element).owlCarousel({
+					items : 7,
+					itemsDesktop : [1199,6],
+					itemsDesktopSmall : [980,5],
+					itemsTablet: [768,5],
+					itemsMobile: [479, 3]
+				});
+				Holder.run();
+	           }, 0);
+			}
+        	
+        });
+       }
+   };
+  return res;
+});
+
 
 contentApp.controller('MovieItemCtrl', ['$scope', '$routeParams', '$http', '$templateCache',
   function($scope, $routeParams, $http, $templateCache) {
