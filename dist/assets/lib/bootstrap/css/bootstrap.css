@@ -6575,3 +6575,8 @@ h3.ng-binding
 {
   margin: 0;
 }
+
+.content-title
+{
+  margin-bottom: 1em;
+}
