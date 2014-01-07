@@ -62,32 +62,10 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="thumbnail">
-              <img class="people-thumbnail" ng-src="assets/img/actors/{{people.poster}}.jpg" alt="{{people.name}}">
+              <img class="people-thumbnail" ng-src="{{people.poster_image}}" alt="{{people.name}}">
             </div>
           </div>
         </div>
-       <!--  <div class="row">
-          <div class="col-md-12 col-sm-12">
-
-            <div class="panel panel-default item-left-panel">
-         
-              <div class="panel-heading">Storyline</div>
-          
-                <div class="row">
-                  <div class="item-label col-md-3">Tagline:</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-9">{{people.tagline}}</div>
-                </div>
-               <div class="row">
-                  <div class="item-label col-md-3">Keywords:</div>
-                </div>
-                <div class="row">
-                  <div class="col-md-9"><span ng-repeat="keyword in people.keywords">{{keyword}}{{{true: '', false: ', '}[$last]}}</span></div>
-                </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>

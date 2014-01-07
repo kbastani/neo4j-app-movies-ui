@@ -45,7 +45,7 @@
                   <div class="panel-heading">Directed By: <span class="panel-heading genre-list"><span ng-repeat="director in movie.directors">{{director}}{{{true: '', false: ', '}[$last]}}</span></span></div>
                 </li>
                 <li class="list-group-item">
-                  <div class="panel-heading">Written By: <span class="panel-heading"><a href="#">{{movie.writer}}</a></span></div>
+                  <div class="panel-heading">Written By: <span class="panel-heading genre-list"><span ng-repeat="writer in movie.writers">{{writer}}{{{true: '', false: ', '}[$last]}}</span></span></div>
                 </li>
               </ul>
             </div>
@@ -75,7 +75,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="thumbnail">
-              <img ng-src="assets/img/posters/{{movie.poster}}.jpg" alt="{{movie.title}}">
+              <img ng-src="{{movie.poster_image}}" alt="{{movie.title}}">
             </div>
           </div>
         </div>

@@ -49,10 +49,10 @@ contentApp.directive('carousel', function() {
            		var html = '';
 	            for (var i = 0; i < movies.length; i++) {
 	            	if ($.inArray(genre, movies[i].genres) != -1) {
-	            	var movieTitleLink = movies[i].title.replace('/', ' ')
+	            	var movieTitleLink = movies[i].poster_image || '/assets/img/posters/' + movies[i].title.replace('/', ' ') + '.jpg';
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail carousel-movies">' +
-						            '<a href="index.html#/movies/' + movies[i].title.replace('/', '%252F') + '"><img alt="100%x180" src="assets/img/posters/' + movieTitleLink + '.jpg"></a>' +
+						            '<a href="index.html#/movies/' + movies[i].title.replace('/', '%252F') + '"><img alt="100%x180" src="' + movieTitleLink + '"></a>' +
 						          '</div>' +
 						          '<span><a href="index.html#/movies/' + movies[i].title.replace('/', '%252F') + '">' + movies[i].title + '</a></span>' +
 						        '</div>';
@@ -116,12 +116,12 @@ contentApp.directive('carouselactors', function() {
            		movie = scope.movie;
            		var html = '';
 	            for (var i = 0; i < movie.actors.length; i++) {
-	            	var actorTitleLink = movie.actors[i].replace('/', ' ')
+					var actorTitleLink = movie.actors[i].poster_image || '/assets/img/actors/' + movie.actors[i].name.replace('/', ' ') + '.jpg';
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail">' +
-						            '<a href="index.html#/people/' + movie.actors[i] + '"><img src="/assets/img/actors/' + movie.actors[i] + '.jpg"/></a>' +
+						            '<a href="index.html#/people/' + movie.actors[i].name + '"><img src="' + actorTitleLink + '"/></a>' +
 						          '</div>' +
-						          '<span><a href="index.html#/people/' + movie.actors[i] + '">' + movie.actors[i] + '</a></span>' +
+						          '<span><a href="index.html#/people/' + movie.actors[i].name + '">' + movie.actors[i].name + '</a></span>' +
 						        '</div>';
 
 	            }
@@ -156,12 +156,12 @@ contentApp.directive('carouselrelatedmovies', function() {
            		movie = scope.movie;
            		var html = '';
 	            for (var i = 0; i < movie.related.length; i++) {
-	            	var relatedMovieTitleLink = movie.related[i].related.replace('/', ' ')
+					var relatedMovieTitleLink = movie.related[i].related.poster_image || '/assets/img/posters/' + movie.related[i].related.title.replace('/', ' ') + '.jpg';
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail">' +
-						            '<a href="index.html#/movies/' + movie.related[i].related.replace('/', '%252F')  + '"><img src="/assets/img/posters/' + relatedMovieTitleLink + '.jpg"/></a>' +
+						            '<a href="index.html#/movies/' + movie.related[i].related.title.replace('/', '%252F')  + '"><img src="' + relatedMovieTitleLink + '"/></a>' +
 						          '</div>' +
-						          '<span><a href="index.html#/movies/' + movie.related[i].related.replace('/', '%252F')  + '">' + movie.related[i].related + '</a></span>' +
+						          '<span><a href="index.html#/movies/' + movie.related[i].related.title.replace('/', '%252F')  + '">' + movie.related[i].related.title + '</a></span>' +
 						        '</div>';
 
 	            }
@@ -197,7 +197,8 @@ contentApp.controller('MovieItemCtrl', ['$scope', '$routeParams', '$http', '$tem
 	  		$http({method: 'GET', url: $scope.url, cache: $templateCache}).
 			    success(function(data, status, headers, config) {
 			    	$scope.movie = data;
-			    	$scope.movie.poster = $scope.movie.title.replace("/", " ");
+			    	$scope.movie.poster_image = $scope.movie.poster_image || '/assets/img/posters/' + $scope.movie.title.replace('/', ' ') + '.jpg';
+			    	$scope.movie.poster_image = $scope.movie.poster_image.replace("w185", "w300");
 			    }).
 			    error(function(data, status, headers, config) {
 			    // called asynchronously if an error occurs
@@ -219,12 +220,12 @@ contentApp.directive('carouselpeoplemovies', function() {
            		people = scope.people;
            		var html = '';
 	            for (var i = 0; i < people.movies.length; i++) {
-	            	var relatedMovieTitleLink = people.movies[i].replace('/', ' ')
+	            	var relatedMovieTitleLink = people.movies[i].poster_image || '/assets/img/posters/' + people.movies[i].title.replace('/', ' ') + '.jpg';
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail">' +
-						            '<a href="index.html#/movies/' + people.movies[i].replace('/', '%252F')  + '"><img src="/assets/img/posters/' + relatedMovieTitleLink + '.jpg"/></a>' +
+						            '<a href="index.html#/movies/' + people.movies[i].title.replace('/', '%252F')  + '"><img src="' + relatedMovieTitleLink +'"/></a>' +
 						          '</div>' +
-						          '<span><a href="index.html#/movies/' + people.movies[i].replace('/', '%252F')  + '">' + people.movies[i] + '</a></span>' +
+						          '<span><a href="index.html#/movies/' + people.movies[i].title.replace('/', '%252F')  + '">' + people.movies[i].title + '</a></span>' +
 						        '</div>';
 
 	            }
@@ -259,12 +260,12 @@ contentApp.directive('carouselrelatedpeople', function() {
            		people = scope.people;
            		var html = '';
 	            for (var i = 0; i < people.related.length; i++) {
-	            	var actorTitleLink = people.related[i].related.replace('/', ' ')
+					var actorTitleLink = people.related[i].related.poster_image || '/assets/img/actors/' + people.related[i].related.name.replace('/', ' ') + '.jpg';
 	                 html += '<div class="item">' +
 						          '<div class="thumbnail">' +
-						            '<a href="index.html#/people/' + people.related[i].related + '"><img src="/assets/img/actors/' + people.related[i].related + '.jpg"/></a>' +
+						            '<a href="index.html#/people/' + people.related[i].related.name + '"><img src="' + actorTitleLink + '"/></a>' +
 						          '</div>' +
-						          '<span><a href="index.html#/people/' + people.related[i].related + '">' + people.related[i].related + '</a></span>' +
+						          '<span><a href="index.html#/people/' + people.related[i].related.name + '">' + people.related[i].related.name + '</a></span>' +
 						        '</div>';
 
 	            }
@@ -298,7 +299,7 @@ contentApp.controller('PeopleItemCtrl', ['$scope', '$routeParams', '$http', '$te
 	  		$http({method: 'GET', url: $scope.url, cache: $templateCache}).
 			    success(function(data, status, headers, config) {
 			    	$scope.people = data;
-			    	$scope.people.poster = $scope.people.name.replace("/", " ");
+			    	$scope.people.poster_image = $scope.people.poster_image || '/assets/img/actors/' + $scope.people.name.replace('/', ' ') + '.jpg';
 			    }).
 			    error(function(data, status, headers, config) {
 			    // called asynchronously if an error occurs
