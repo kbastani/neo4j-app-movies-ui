@@ -26,3 +26,6 @@ contentApp.config(['$routeProvider',
         redirectTo: '/movies'
       });
   }]);
+
+
+
